@@ -20,17 +20,7 @@ public class Strings {
         return res;
     }
 
-    String reverse(String str,int i, int j){
-        StringBuilder sb = new StringBuilder(str);
 
-        while(i<j){
-            sb.setCharAt(i, str.charAt(j));
-            sb.setCharAt(j, str.charAt(i));
-            i++;
-            j--;
-        }
-        return sb.toString();
-    }
 
     boolean checkAnagram(String s1,String s2){
         int[] sMap=new int[26];
@@ -76,18 +66,27 @@ public class Strings {
         }
         return res;
     }
-    String reverseWordsInASentence(String s){
-        int i=0;
-        while(i<s.length()){
-            int j=s.indexOf(" ",i);
 
+    void reverse(StringBuilder str,String s,int i, int j){
+        while(i<j){
+            str.setCharAt(i, s.charAt(j));
+            str.setCharAt(j, s.charAt(i));
+            i++;
+            j--;
+        }
+    }
+    String reverseWordsInASentence(String s){
+        StringBuilder sb = new StringBuilder(s);
+        int i=0;
+        while(i<sb.length()){
+            int j=sb.indexOf(" ",i);
             if(j==-1){
-                j=s.length();
+                j=sb.length();
             }
-            s=this.reverse(s,i,j-1);
+            this.reverse(sb,s,i,j-1);
             i=j+1;
         }
-        return s;
+        return sb.toString();
     }
 
 
